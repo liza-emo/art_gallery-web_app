@@ -1,0 +1,70 @@
+<!-- app/templates/admin/art_categories/art_categories.html -->
+
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Art_Categories{% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <h1 style="text-align:center;">Art_Categories</h1>
+        {% if art_categories %}
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th width="15%"> categoryid </th>
+                  <th width="40%"> categoryName </th>
+                  <th width="15%"> Artwork Count </th>
+                  <th width="15%"> Edit </th>
+                  <th width="15%"> Delete </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for art_category in art_categories %}
+                <tr>
+                  <td> {{ art_category.categoryid }} </td>
+                  <td> {{ art_category.categoryName }} </td>
+                  <td>
+                    {% if art_category.artwork %}
+                      {{ art_category.artworks.count() }}
+                    {% else %}
+                      0
+                    {% endif %}
+                  </td>
+                  <td>
+                    <a href="{{ url_for('admin.edit_art_category', categoryid=art_category.categoryid) }}">
+                      <i class="fa fa-pencil"></i> Edit 
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{{ url_for('admin.delete_art_category', categoryid=art_category.categoryid) }}">
+                      <i class="fa fa-trash"></i> Delete 
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div style="text-align: center">
+        {% else %}
+          <div style="text-align: center">
+            <h3> No art_categories have been added. </h3>
+            <hr class="intro-divider">
+        {% endif %}
+          <a href="{{ url_for('admin.add_art_category') }}" class="btn btn-default btn-lg">
+            <i class="fa fa-plus"></i>
+            Add Art_Category
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

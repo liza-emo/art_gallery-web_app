@@ -1,0 +1,36 @@
+<!-- app/templates/admin/customers/customer.html -->
+
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}
+    {% if edit_customer%}
+        Assign Customer
+    {% else %}
+        Edit Customer
+    {% endif %}
+{% endblock %}
+{% block body %}
+<div class="content-section">
+ <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <div class="center">
+            {% if edit_customer %}
+                <h1>Assign art categories and artist</h1>
+            {% else %}
+                <h1>Edit Customer</h1>
+            {% endif %}
+            <br/>
+            {{ wtf.quick_form(form) }}
+<!--             <p>
+                Select a art category and artist to assign to
+                <span style="color: #aec251;">
+                    {{ customer.customerName }}
+                </span>
+            </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

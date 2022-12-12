@@ -1,0 +1,30 @@
+<!-- app/templates/admin/art_categories/art_category.html -->
+
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}
+    {% if add_art_category %}
+        Add Art_Category
+    {% else %}
+        Edit Art_Category
+    {% endif %}
+{% endblock %}
+{% block body %}
+<div class="content-section">
+ <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <div class="center">
+            {% if add_art_category %}
+                <h1>Add Art_Category</h1>
+            {% else %}
+                <h1>Edit Art_Category</h1>
+            {% endif %}
+            <br/>
+            {{ wtf.quick_form(form) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
